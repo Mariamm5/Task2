@@ -1,7 +1,8 @@
 <?php
 session_start();
-if (isset($_SESSION['admin'])) {
-    ?>
+if (!isset($_SESSION['admin'])):?>
+    <?php header("Location:index.php"); ?>
+<?php else : ?>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -47,11 +48,4 @@ if (isset($_SESSION['admin'])) {
     </body>
 
     </html>
-
-    <?php
-} else {
-    header("Location: index.php");
-    unset($_SESSION['admin']);
-    exit;
-}
-?>
+<?php endif; ?>

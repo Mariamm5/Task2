@@ -1,9 +1,9 @@
 <?php
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
-$db = "for_tasks";
+$servername = 'localhost';
+$username = 'root';
+$password = '';
+$db = 'for_tasks';
 
 
 try {
@@ -19,8 +19,8 @@ if (isset($_POST['login'])) {
 }
 
 if (empty($email) || empty($password)) {
-    $_SESSION['adminLogin']['error'] = "All fields are required!";
-    header("Location:index.php");
+    $_SESSION['adminLogin']['error'] = 'All fields are required!';
+    header('Location:index.php');
 } else {
     unset($_SESSION['adminLogin']['error']);
 
@@ -32,11 +32,11 @@ if (empty($email) || empty($password)) {
 
 
     if ($res['email'] == $email && $res['password'] == $password) {
-        $_SESSION['admin'] = "admin";
-        header("Location:addingPosts.php");
+        $_SESSION['admin'] = 'admin';
+        header('Location:addingPosts.php');
     } else {
-        header("Location:index.php");
-        $_SESSION['adminLogin']['error'] = "User Not Found";
+        header('Location:index.php');
+        $_SESSION['adminLogin']['error'] = 'User Not Found';
         unset($_SESSION['admin']);
 
     }

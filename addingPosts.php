@@ -1,8 +1,10 @@
 <?php
 session_start();
+?>
 
-if (isset($_SESSION['admin'])) {
-    ?>
+<?php if (!isset($_SESSION['admin'])): ?>
+    <?php header("Location: index.php"); ?>
+<?php else: ?>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -18,23 +20,23 @@ if (isset($_SESSION['admin'])) {
     <form action="addingPostsAction.php" method="post" id="addForm">
         <label>
             <?php
-
             if (isset($_SESSION['addingPosts']['error'])) {
                 echo "<p>" . $_SESSION['addingPosts']['error'] . "</p>";
                 unset($_SESSION['addingPosts']['error']);
             }
             ?>
         </label>
-        <input type="text" name="title" placeholder="For Title"     >
-        <textarea name="description" cols="50" rows="10" placeholder="Some text here" ></textarea>
+        <label style="color: gray">Title
+            <input type="text" name="title" placeholder="For Title">
+        </label>
+        <label style="color: gray">
+            Description
+            <textarea name="description" cols="50" rows="10" placeholder="Some text here"></textarea>
+        </label>
         <input type="submit" value="Add" name="add" class="addBtn">
     </form>
     </body>
 
     </html>
 
-    <?php
-} else {
-    header("Location: addingPosts.php");
-}
-?>
+<?php endif; ?>
